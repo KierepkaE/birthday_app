@@ -21,7 +21,8 @@ class Birthday < Sinatra::Base
     @birthday_date = session[:birthday_date]
     @days = (DateTime.now.mjd - DateTime.parse(@birthday_date).mjd) < 0 ? (DateTime.now.mjd - DateTime.parse(@birthday_date).mjd) * -1 : (DateTime.now.mjd - DateTime.parse(@birthday_date).mjd)
     @name = session[:name]
-    if @today_date.to_s == @birthday_date.to_s
+
+    if (@today_date.to_s).slice(5..9) ==(@birthday_date.to_s).slice(5..9)
       erb :birthday
     else
       erb :counting_to_birthday
