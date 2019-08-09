@@ -1,0 +1,19 @@
+require 'sinatra/base'
+require 'sinatra'
+require 'capybara/dsl'
+require 'selenium-webdriver'
+class Birthday < Sinatra::Base
+
+ enable :sessions
+
+
+  get '/' do
+    erb :index
+  end
+
+
+  run! if app_file == $0
+
+  set :session_secret, 'super secret'
+
+end
