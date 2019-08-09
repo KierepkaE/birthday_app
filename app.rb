@@ -19,7 +19,7 @@ class Birthday < Sinatra::Base
   get '/birthday' do
     @today_date = Date.today
     @birthday_date = session[:birthday_date]
-    @days = DateTime.now.mjd - DateTime.parse(@birthday_date).mjd
+    @days = (DateTime.now.mjd - DateTime.parse(@birthday_date).mjd) < 0 ? (DateTime.now.mjd - DateTime.parse(@birthday_date).mjd) * -1 : (DateTime.now.mjd - DateTime.parse(@birthday_date).mjd)
     @name = session[:name]
     if @today_date.to_s == @birthday_date.to_s
       erb :birthday
